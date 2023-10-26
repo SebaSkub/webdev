@@ -1,23 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration Page</title>
+    <title>Sample Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Registration</h1>
-    <form id="registration-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+    <div class="container">
+        <h2>Welcome to our Web Page</h2>
+        <div id="registration" style="display: none;">
+            <h3>Register New User</h3>
+            <form action="registration_handler.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div id="login">
+            <h3>Login</h3>
+            <form action="login_handler.php" method="post">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div id="landing" style="display: none;">
+            <h3>Welcome, User!</h3>
+            <p>This is the landing page of our website. You can put any content or functionality here.</p>
+        </div>
+        <script>
+            function showRegistration() {
+                document.getElementById("registration").style.display = "block";
+                document.getElementById("login").style.display = "none";
+                document.getElementById("landing").style.display = "none";
+            }
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+            function showLogin() {
+                document.getElementById("registration").style.display = "none";
+                document.getElementById("login").style.display = "block";
+                document.getElementById("landing").style.display = "none";
+            }
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <button type="submit" id="register-button">Register</button>
-    </form>
-
-    <script src="registration.js"></script>
+            function showLanding() {
+                document.getElementById("registration").style.display = "none";
+                document.getElementById("login").style.display = "none";
+                document.getElementById("landing").style.display = "block";
+            }
+        </script>
+    </div>
 </body>
 </html>
