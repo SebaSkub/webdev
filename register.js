@@ -22,5 +22,8 @@ document.getElementById('registration-form').addEventListener('submit', function
     .then(response => response.json())
     .then(data => {
         alert(data.message);
+        
+        // Redirect to the Login Page after registration
+        window.location.href = 'login.html';
     });
 });
