@@ -1,48 +1,112 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>
-Register
-</title>
-<style>
-td{padding:2px;}
-.top{padding-top:7px;}
-</style>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .top {
+            padding-top: 15px;
+        }
+
+        input[type="email"],
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<h2>Register</h2>
-<form method='POST' action='/register'>
-<table>
-<tr>
-<td><h3>User Information</h3></td>
-</tr>
-<tr>
-<td class='top'>Email:</td>
-<td class='top'><input type='email' name='email' required></td>
-</tr>
-<tr>
-<td>First Name:</td>
-<td><input type='text' name='first' required></td>
-</tr>
-<tr>
-<td>Last Name:</td>
-<td><input type='text' name='last' required></td>
-</tr>
-<tr><td><br></td></tr>
-<tr>
-<td><h3>Login Information</h3></td>
-</tr>
-<tr>
-<td class='top'>Username:</td>
-<td class='top'><input type='text' name='user' required></td>
-</tr>
-<tr>
-<td>Password:</td>
-<td><input type='password' name='pass' required></td>
-</tr>
-</table>
-<br>
-<input type='submit' value='Register user'><br><br>
-</form>
-<a href='login.html'>Return to login page</a>
+    <h2>Register</h2>
+    <form method='POST' action='/register'>
+        <table>
+            <tr>
+                <td><h3>User Information</h3></td>
+            </tr>
+            <tr>
+                <td class='top'>Email:</td>
+                <td class='top'><input type='email' name='email' required></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type='text' name='first' required></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type='text' name='last' required></td>
+            </tr>
+            <tr><td><br></td></tr>
+            <tr>
+                <td><h3>Login Information</h3></td>
+            </tr>
+            <tr>
+                <td class='top'>Username:</td>
+                <td class='top'><input type='text' name='user' required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type='password' name='pass' required></td>
+            </tr>
+        </table>
+        <br>
+        <input type='submit' value='Register user'><br><br>
+    </form>
+    <a href='login.html'>Return to login page</a>
 </body>
 </html>
