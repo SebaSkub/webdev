@@ -7,7 +7,7 @@ app = Flask(__name)
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
     # Configure the RabbitMQ connection
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('sars490'))
     channel = connection.channel()
 
     # Declare a queue for login data
@@ -32,7 +32,7 @@ def login():
     send_to_rabbitmq(data)
 
     # Redirect to a success page or handle the response as needed
-    return "Login submitted successfully."
+    return redirect ('/it490/landing.html')
 
 if __name__ == '__main__':
     app.run()
