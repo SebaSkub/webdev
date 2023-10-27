@@ -38,7 +38,7 @@ fetch(`${serverUrl}/register`, {
 .then(responseData => {
     if (responseData.message === 'User Created!') {
         // Handle success
-        redirect('User successfully registered. Redirecting to build dietary profile.', 'buildprofile.html', 3);
+        redirect('User successfully registered. Redirecting to build dietary profile.', 'landing.html', 3);
     } else if (responseData.message === 'Duplicate') {
         // Handle duplicate email case
         redirect('Email already in use. Please use a different email or try logging in using that email.', 'register.html', 3);
