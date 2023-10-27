@@ -1,11 +1,11 @@
 document.getElementById('login-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById('user').value;
+    const password = document.getElementById('pass').value;
 
     const loginData = {
-        username: username,
-        password: password,
+        username: user,
+        password: pass,
         page: 'login'
     };
 
