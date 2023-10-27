@@ -19,7 +19,7 @@ def send_to_rabbitmq(data):
     connection.close()
 
 # Define a route to handle the form submission
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login():
     # Get form data
     data = {
