@@ -6,11 +6,16 @@ app = Flask(__name)
 
 # Configure RabbitMQ connection parameters
 rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
-rabbitmq_queue = 'registration_queue'
+rabbitmq_port = 5672
+rabbitmq_user = 'it490'
+rabbitmq_password = 'it490'
+rabbitmq_queue = 'userRegister_FTOB'
 
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host))
+    credentials = PikaCredentials(username = rabbitmq_user, password = rabbitmq_password)
+    
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
     
     # Declare a queue for registration data
