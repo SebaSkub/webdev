@@ -5,7 +5,7 @@ import json
 app = Flask(__name)
 
 # Configure RabbitMQ connection parameters
-rabbitmq_host = 'localhost'  # Update with your RabbitMQ server host
+rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
 rabbitmq_queue = 'registration_queue'
 
 # Define a function to send data to RabbitMQ
