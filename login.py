@@ -8,13 +8,13 @@ rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
 rabbitmq_port = 5672
 rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
-rabbitmq_queue = 'userRegister_FTOB'
+rabbitmq_queue = 'userLogin_FTOB'
 
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
     # Configure the RabbitMQ connection
-    
-    connection = pika.BlockingConnection(pika.ConnectionParameters('sars490'))
+    credentials = PikaCredentials(username = rabbitmq_user, password = rabbitmq_password)
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
 
     # Declare a queue for login data
