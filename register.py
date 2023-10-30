@@ -15,12 +15,11 @@ rabbitmq_queue = 'userRegister_FTOB'
 
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host))
+    credentials = PikaCredentials(rabbitmq_user, rabbitmq_password)
+    parameters = pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials)
+    connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
     channel.queue_declare(queue=rabbitmq_queue)
-    credentials = PikaCredentials(rabbitmq_user, rabbitmq_password)
-
-    
 
     # Convert data to JSON
     message = json.dumps(data)
@@ -58,4 +57,4 @@ def register():
             return f"Error: {str(e)}"
 
 if __name__ == '__main__':
-    app.run(debug=True, port 5672)
+    app.run(debug=True, port=7007)
