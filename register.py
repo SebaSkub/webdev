@@ -32,22 +32,23 @@ def send_to_rabbitmq(data):
 def register():
     if request.method == "POST":
     # Get form data
-    email = request.form.get('email')
-    first_name = request.form.get('first')
-    last_name = request.form.get('last')
-    username = request.form.get('user')
-    password = request.form.get('pass')
+        email = request.form.get('email')
+        first_name = request.form.get('first')
+        last_name = request.form.get('last')
+        
     
     # New registration information
-    dob = request.form.get('DOB')
-    age = request.form.get('age')
-    lol_id = request.form.get('lolID')
-    steam_link = request.form.get('steamLink')
-    sec_question_1 = request.form.get('secQuest1')
-    sec_question_2 = request.form.get('secQuest2')
+        dob = request.form.get('DOB')
+        age = request.form.get('age')
+        lol_id = request.form.get('lolID')
+        steam_link = request.form.get('steamLink')
+        sec_question_1 = request.form.get('secQuest1')
+        sec_question_2 = request.form.get('secQuest2')
+        username = request.form.get('user')
+        password = request.form.get('pass')
 
     # Create a dictionary with form data
-    data = {
+        data = {
         'type': 'register',
         'email': email,
         'first': first_name,
