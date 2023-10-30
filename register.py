@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import pika
 import json
 from pika.credentials import PlainCredentials as PikaCredentials
@@ -67,21 +67,6 @@ def register():
             # Send data to RabbitMQ
             send_to_rabbitmq(data)
 
-            # Print form data to the console (optional)
-            print(f"Email: {email}")
-            print(f"First Name: {first_name}")
-            print(f"Last Name: {last_name}")
-            print(f"Username: {username}")
-            print(f"Password: {password}")
-            
-            # Print new registration information (optional)
-            print(f"Date of Birth: {dob}")
-            print(f"Age: {age}")
-            print(f"League of Legends ID: {lol_id}")
-            print(f"Steam Link: {steam_link}")
-            print(f"Security Question #1: {sec_question_1}")
-            print(f"Security Question #2: {sec_question_2")
-
             # You can process and store the data as needed here
 
             # Redirect to a success page or handle the response as needed
@@ -91,7 +76,7 @@ def register():
             return f"Error: {str(e)}"
     
     # For GET requests, display the registration form
-    return render_template('/it490/register.html')
+    return render_template('it490/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
