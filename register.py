@@ -42,7 +42,7 @@ def send_to_rabbitmq(data):
     connection.close()
 
 # Define a route to handle the form submission
-@app.route("/register", methods=["POST", "GET"])
+@app.route("/it490/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
         # Get form data
