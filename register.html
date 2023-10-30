@@ -5,7 +5,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #222;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
@@ -18,9 +19,9 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background: #fff;
+            background: #333;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         table {
@@ -44,9 +45,10 @@
             width: 100%;
             padding: 10px;
             margin: 5px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #007bff; /* Blue border */
             border-radius: 3px;
-            outline: none;
+            background: #444; /* Dark background */
+            color: #fff;
         }
 
         input[type="submit"] {
@@ -56,6 +58,7 @@
             border-radius: 3px;
             padding: 10px 15px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
@@ -82,15 +85,6 @@
         input[type="number"]:focus,
         input[type="url"]:focus {
             border: 2px solid #007bff;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        input[type="number"],
-        input[type="url"] {
-            transition: border 0.3s;
         }
 
         /* Style the submit button */
