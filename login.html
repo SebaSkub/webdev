@@ -4,29 +4,27 @@
     <title>Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #2980b9, #6dd5fa);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Use min-height to ensure centering even if content is short */
+            height: 100vh;
         }
 
         .login-container {
-            max-width: 400px; /* Adjust the maximum width to fit your design */
-            width: 100%;
-            background: #333;
+            max-width: 400px;
+            background: #fff;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         h2 {
             text-align: center;
-            margin-top: 0;
-            padding: 20px;
+            color: #333;
         }
 
         form {
@@ -46,14 +44,14 @@
             width: 100%;
             padding: 10px;
             margin: 5px 0;
-            border: 1px solid #007bff;
+            border: 1px solid #ccc;
             border-radius: 3px;
-            background: #444;
-            color: #fff;
+            background: #f4f4f4;
+            color: #333;
         }
 
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #2980b9;
             color: #fff;
             border: none;
             border-radius: 3px;
@@ -63,7 +61,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #0077aa;
         }
 
         a {
@@ -71,32 +69,11 @@
             display: block;
             text-align: center;
             margin-top: 10px;
-            color: #007bff;
+            color: #2980b9;
         }
 
         a:hover {
             text-decoration: underline;
-        }
-
-        /* New styles for form elements */
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border: 2px solid #007bff;
-        }
-
-        /* Style the submit button */
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
