@@ -90,7 +90,6 @@ def register():
             return f"Error: {str(e)}"
 
     # For GET requests, display the registration form
-    return render_template('it490/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=7007)
