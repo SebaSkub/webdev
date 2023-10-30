@@ -1,6 +1,6 @@
+# Import necessary libraries
 from flask import Flask, request, render_template
 import pika
-import json
 from pika.credentials import PlainCredentials as PikaCredentials
 
 app = Flask(__name)
@@ -15,16 +15,30 @@ rabbitmq_queue = 'userRegister_FTOB'
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
     credentials = PikaCredentials(username=rabbitmq_user, password=rabbitmq_password)
-    
+
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
-    
+
     # Declare a queue for registration data
     channel.queue_declare(queue=rabbitmq_queue)
-    
-    # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
-    
+
+    # Convert data to plain text
+    plain_text_data = f"Type: {data['type']}\n"
+    plain_text_data += f"Email: {data['email']}\n"
+    plain_text_data += f"First Name: {data['first']}\n"
+    plain_text_data += f"Last Name: {data['last']}\n"
+    plain_text_data += f"DOB: {data['DOB']}\n"
+    plain_text_data += f"Age: {data['age']}\n"
+    plain_text_data += f"League of Legends ID: {data['lolID']}\n"
+    plain_text_data += f"Steam Link: {data['steamLink']}\n"
+    plain_text_data += f"Security Question #1: {data['secQuest1']}\n"
+    plain_text_data += f"Security Question #2: {data['secQuest2']}\n"
+    plain_text_data += f"Username: {data['user']}\n"
+    plain_text_data += f"Password: {data['pass']}"
+
+    # Send the data as plain text to the RabbitMQ queue
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=plain_text_data)
+
     connection.close()
 
 # Define a route to handle the form submission
@@ -35,7 +49,7 @@ def register():
         email = request.form.get('email')
         first_name = request.form.get('first')
         last_name = request.form.get('last')
-    
+
         # New registration information
         dob = request.form.get('DOB')
         age = request.form.get('age')
@@ -74,7 +88,7 @@ def register():
         except Exception as e:
             # Handle any exceptions that may occur during RabbitMQ interaction
             return f"Error: {str(e)}"
-    
+
     # For GET requests, display the registration form
     return render_template('it490/register.html')
 
