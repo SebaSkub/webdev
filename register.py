@@ -29,7 +29,7 @@ def send_to_rabbitmq(data):
     connection.close()
 
 # Define a route to handle the form submission
-@app.route('/', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
         # Get form data
