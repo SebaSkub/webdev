@@ -64,24 +64,24 @@ def register():
         'pass': password
     }
 
-    try:
+        try:
         # Send data to RabbitMQ
-        send_to_rabbitmq(data)
+            send_to_rabbitmq(data)
 
         # Print form data to the console (optional)
-        print(f"Email: {email}")
-        print(f"First Name: {first_name}")
-        print(f"Last Name: {last_name}")
-        print(f"Username: {username}")
-        print(f"Password: {password}")
+            print(f"Email: {email}")
+            print(f"First Name: {first_name}")
+            print(f"Last Name: {last_name}")
+            print(f"Username: {username}")
+            print(f"Password: {password}")
         
         # Print new registration information (optional)
-        print(f"Date of Birth: {dob}")
-        print(f"Age: {age}")
-        print(f"League of Legends ID: {lol_id}")
-        print(f"Steam Link: {steam_link}")
-        print(f"Security Question #1: {sec_question_1}")
-        print(f"Security Question #2: {sec_question_2}")
+            print(f"Date of Birth: {dob}")
+            print(f"Age: {age}")
+            print(f"League of Legends ID: {lol_id}")
+            print(f"Steam Link: {steam_link}")
+            print(f"Security Question #1: {sec_question_1}")
+            print(f"Security Question #2: {sec_question_2}")
 
         # You can process and store the data as needed here
 
@@ -90,6 +90,7 @@ def register():
     except Exception as e:
         # Handle any exceptions that may occur during RabbitMQ interaction
         return f"Error: {str(e)}"
+    return render.template('/it490/register.html')
 
 if __name__ == '__main__':
     app.run()
