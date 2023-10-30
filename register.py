@@ -22,22 +22,11 @@ def send_to_rabbitmq(data):
     # Declare a queue for registration data
     channel.queue_declare(queue=rabbitmq_queue)
 
-    # Convert data to plain text
-    plain_text_data = f"Type: {data['type']}\n"
-    plain_text_data += f"Email: {data['email']}\n"
-    plain_text_data += f"First Name: {data['first']}\n"
-    plain_text_data += f"Last Name: {data['last']}\n"
-    plain_text_data += f"DOB: {data['DOB']}\n"
-    plain_text_data += f"Age: {data['age']}\n"
-    plain_text_data += f"League of Legends ID: {data['lolID']}\n"
-    plain_text_data += f"Steam Link: {data['steamLink']}\n"
-    plain_text_data += f"Security Question #1: {data['secQuest1']}\n"
-    plain_text_data += f"Security Question #2: {data['secQuest2']}\n"
-    plain_text_data += f"Username: {data['user']}\n"
-    plain_text_data += f"Password: {data['pass']}"
+    # Convert data to a message (e.g., JSON)
+    message = json.dumps(data)  # You may want to use JSON or another format for your data
 
-    # Send the data as plain text to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=plain_text_data)
+    # Send the data to the RabbitMQ queue
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=message)
 
     connection.close()
 
@@ -66,7 +55,6 @@ def register():
             'email': email,
             'first': first_name,
             'last': last_name,
-            # Include the new registration information
             'DOB': dob,
             'age': age,
             'lolID': lol_id,
@@ -90,6 +78,7 @@ def register():
             return f"Error: {str(e)}"
 
     # For GET requests, display the registration form
+    return render_template('it490/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=7007)
