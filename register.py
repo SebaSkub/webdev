@@ -1,8 +1,9 @@
 from flask import Flask, request
 import pika
 import json
+from pika.credentials import PlainCredentials as PikaCredentials
 
-app = Flask(__name__)
+app = Flask(__name)
 
 # Configure RabbitMQ connection parameters
 rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
@@ -13,7 +14,7 @@ rabbitmq_queue = 'userRegister_FTOB'
 
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
-    credentials = PikaCredentials(username = rabbitmq_user, password = rabbitmq_password)
+    credentials = PikaCredentials(username=rabbitmq_user, password=rabbitmq_password)
     
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
@@ -27,16 +28,15 @@ def send_to_rabbitmq(data):
     connection.close()
 
 # Define a route to handle the form submission
-
 @app.route("/register", methods=["POST", "GET"])
 def register():
-    # Get form data
+    if request.method == "POST":
+        # Get form data
         email = request.form.get('email')
         first_name = request.form.get('first')
         last_name = request.form.get('last')
-        
     
-    # New registration information
+        # New registration information
         dob = request.form.get('DOB')
         age = request.form.get('age')
         lol_id = request.form.get('lolID')
@@ -46,50 +46,52 @@ def register():
         username = request.form.get('user')
         password = request.form.get('pass')
 
-    # Create a dictionary with form data
+        # Create a dictionary with form data
         data = {
-        'type': 'register',
-        'email': email,
-        'first': first_name,
-        'last': last_name,
-        # Include the new registration information
-        'DOB': dob,
-        'age': age,
-        'lolID': lol_id,
-        'steamLink': steam_link,
-        'secQuest1': sec_question_1,
-        'secQuest2': sec_question_2,
-        'user': username,
-        'pass': password
-    }
+            'type': 'register',
+            'email': email,
+            'first': first_name,
+            'last': last_name,
+            # Include the new registration information
+            'DOB': dob,
+            'age': age,
+            'lolID': lol_id,
+            'steamLink': steam_link,
+            'secQuest1': sec_question_1,
+            'secQuest2': sec_question_2,
+            'user': username,
+            'pass': password
+        }
 
         try:
-        # Send data to RabbitMQ
+            # Send data to RabbitMQ
             send_to_rabbitmq(data)
 
-        # Print form data to the console (optional)
+            # Print form data to the console (optional)
             print(f"Email: {email}")
             print(f"First Name: {first_name}")
             print(f"Last Name: {last_name}")
             print(f"Username: {username}")
             print(f"Password: {password}")
-        
-        # Print new registration information (optional)
+            
+            # Print new registration information (optional)
             print(f"Date of Birth: {dob}")
             print(f"Age: {age}")
             print(f"League of Legends ID: {lol_id}")
             print(f"Steam Link: {steam_link}")
             print(f"Security Question #1: {sec_question_1}")
-            print(f"Security Question #2: {sec_question_2}")
+            print(f"Security Question #2: {sec_question_2")
 
-        # You can process and store the data as needed here
+            # You can process and store the data as needed here
 
-        # Redirect to a success page or handle the response as needed
-        return "User registration submitted successfully."
-    except Exception as e:
-        # Handle any exceptions that may occur during RabbitMQ interaction
-        return f"Error: {str(e)}"
-    return render.template('/it490/register.html')
+            # Redirect to a success page or handle the response as needed
+            return "User registration submitted successfully."
+        except Exception as e:
+            # Handle any exceptions that may occur during RabbitMQ interaction
+            return f"Error: {str(e)}"
+    
+    # For GET requests, display the registration form
+    return render_template('/it490/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
