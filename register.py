@@ -23,7 +23,7 @@ def send_to_rabbitmq(data):
     channel.queue_declare(queue=rabbitmq_queue)
     
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
+   
     
     connection.close()
 
@@ -63,25 +63,7 @@ def register():
             'pass': password
         }
 
-        try:
-            # Send data to RabbitMQ
-            send_to_rabbitmq(data)
-
-            # Print form data to the console (optional)
-            print(f"Email: {email}")
-            print(f"First Name: {first_name}")
-            print(f"Last Name: {last_name}")
-            print(f"Username: {username}")
-            print(f"Password: {password}")
-            
-            # Print new registration information (optional)
-            print(f"Date of Birth: {dob}")
-            print(f"Age: {age}")
-            print(f"League of Legends ID: {lol_id}")
-            print(f"Steam Link: {steam_link}")
-            print(f"Security Question #1: {sec_question_1}")
-            print(f"Security Question #2: {sec_question_2")
-
+        
             # You can process and store the data as needed here
 
             # Redirect to a success page or handle the response as needed
