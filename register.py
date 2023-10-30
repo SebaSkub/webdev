@@ -18,7 +18,8 @@ def send_to_rabbitmq(data):
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host))
     channel = connection.channel()
     channel.queue_declare(queue=rabbitmq_queue)
-    credentials = pika.PlainCredentials(username = rabbitmq_user, password = rabbitmq_password)
+    credentials = PikaCredentials(rabbitmq_user, rabbitmq_password)
+
     
 
     # Convert data to JSON
@@ -57,4 +58,4 @@ def register():
             return f"Error: {str(e)}"
 
 if __name__ == '__main__':
-    app.run(debug=True, port 7007)
+    app.run(debug=True, port 5672)
