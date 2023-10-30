@@ -31,8 +31,8 @@ def login():
     # Get form data
     data = {
         'type': 'login',
-        'user': request.form['user'],
-        'pass': request.form['pass']
+        'userName': request.form['userName'],
+        'password': request.form['password']
     }
 
     # Send data to RabbitMQ
