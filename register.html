@@ -37,7 +37,10 @@
 
         input[type="email"],
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="date"],
+        input[type="number"],
+        input[type="url"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -70,7 +73,48 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* New styles for form elements */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        input[type="url"]:focus {
+            border: 2px solid #007bff;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="number"],
+        input[type="url"] {
+            transition: border 0.3s;
+        }
+
+        /* Style the submit button */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
     </style>
+     <script>
+        // Function to generate a random 4-digit PIN
+        function generateRandomPin() {
+            var pin = Math.floor(1000 + Math.random() * 9000); // Random number between 1000 and 9999
+            document.getElementById("secQuest2").value = pin; // Set the value of the input field
+        }
+    </script>
 </head>
 <body>
     <h2>Register</h2>
@@ -90,6 +134,31 @@
             <tr>
                 <td>Last Name:</td>
                 <td><input type='text' name='last' required></td>
+            </tr>
+            <tr>
+                <td>Date of Birth (DOB):</td>
+                <td><input type='date' name='DOB' required></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><input type='number' name='age' required></td>
+            </tr>
+            <tr>
+                <td>League of Legends ID:</td>
+                <td><input type='text' name='lolID' required></td>
+            </tr>
+            <tr>
+                <td>Steam Link:</td>
+                <td><input type='url' name='steamLink'></td>
+            </tr>
+            <tr>
+                <td>Security Question #1:</td>
+                <td><input type='text' name='secQuest1' required></td>
+            </tr>
+            <tr>
+                <td>Security Question #2 (Random PIN):</td>
+                <td><input type='text' id='secQuest2' name='secQuest2' required></td>
+                <td><button type='button' onclick='generateRandomPin()'>Generate PIN</button></td>
             </tr>
             <tr><td><br></td></tr>
             <tr>
