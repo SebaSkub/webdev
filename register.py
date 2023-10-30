@@ -6,7 +6,7 @@ from pika.credentials import PlainCredentials as PikaCredentials
 app = Flask(__name)
 
 # Configure RabbitMQ connection parameters
-rabbitmq_host = '10.198.120.114'  # Update with your RabbitMQ server host
+rabbitmq_host = 'sars490'  # Update with your RabbitMQ server host
 rabbitmq_port = 5672
 rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
