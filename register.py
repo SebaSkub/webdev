@@ -27,8 +27,11 @@ def send_to_rabbitmq(data):
     connection.close()
 
 # Define a route to handle the form submission
+
 @app.route("/it490/register", methods=["POST"])
-def register():
+def register_handler():
+    form_data = request.form
+    print(form_data)
     # Get form data
     email = request.form.get('email')
     first_name = request.form.get('first')
