@@ -2,7 +2,7 @@ from flask import Flask, request
 import pika
 import json
 
-app = Flask(__name)
+app = Flask(__name__)
 
 # Configure RabbitMQ connection parameters
 rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
@@ -28,7 +28,7 @@ def send_to_rabbitmq(data):
 
 # Define a route to handle the form submission
 
-@app.route("/it490/register", methods=["POST"])
+@app.route("/it490/register.html", methods=["POST"])
 def register_handler():
     form_data = request.form
     print(form_data)
