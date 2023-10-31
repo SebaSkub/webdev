@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import pika
 import json
 
@@ -13,28 +13,32 @@ rabbitmq_queue = 'userLogin_FTOB'
 # Define a function to send data to RabbitMQ
 def send_to_rabbitmq(data):
     # Configure the RabbitMQ connection
-    credentials = PikaCredentials(username = rabbitmq_user, password = rabbitmq_password)
+    credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
 
     # Declare a queue for login data
-    channel.queue_declare(queue='login_queue')
+    channel.queue_declare(queue=rabbitmq_queue)
 
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=str(data))
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
 
     connection.close()
 
-# Define a route to handle the form submission
+# Your login route
 @app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'POST':
-        # Get the login data from the request
-        login_data = request.form
+    try:
+        data = request.get_json()  # Get the JSON data from the request
+        # Validate user's credentials (you can implement your own validation logic here)
 
-        # Process the login data if needed
+        # Assuming valid login, send data to RabbitMQ
+        send_to_rabbitmq(data)
 
-        # Send the login data to RabbitMQ as plaintext
-        send_to_rabbitmq(login_data)
+        return 'Login successful', 200
 
-        return 'Login data sent to RabbitMQ'
+    except Exception as e:
+        return 'Login failed', 400
+
+if __name__ == '__main__':
+    app.run()
