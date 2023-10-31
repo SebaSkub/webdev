@@ -16,6 +16,7 @@ def send_to_rabbitmq(data):
     credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
+    message = 'Hello, RabbitMQ!'
 
     # Declare a queue for user registration data
     channel.queue_declare(queue=rabbitmq_queue, durable=True)
