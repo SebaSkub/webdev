@@ -21,25 +21,20 @@ def send_to_rabbitmq(data):
     channel.queue_declare(queue='login_queue')
 
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key='login_queue', body=json.dumps(data))
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=str(data))
 
     connection.close()
 
 # Define a route to handle the form submission
-@app.route('/', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    # Get form data
-    data = {
-        'type': 'login',
-        'user': request.form['user'],
-        'pass': request.form['pass']
-    }
+    if request.method == 'POST':
+        # Get the login data from the request
+        login_data = request.form
 
-    # Send data to RabbitMQ
-    send_to_rabbitmq(data)
+        # Process the login data if needed
 
-    # Redirect to a success page or handle the response as needed
-    return redirect ('/it490/landing.html')
+        # Send the login data to RabbitMQ as plaintext
+        send_to_rabbitmq(login_data)
 
-if __name__ == '__main__':
-    app.run()
+        return 'Login data sent to RabbitMQ'
