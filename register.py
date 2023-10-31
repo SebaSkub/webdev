@@ -5,7 +5,7 @@ from flask import Flask, request
 
 # RabbitMQ connection parameters
 rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
-rabbitmq_port = 5672
+rabbitmq_port = 15672
 rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
 rabbitmq_queue = 'userRegister_FTOB'
