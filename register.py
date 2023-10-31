@@ -14,38 +14,32 @@ app = Flask(__name)
     credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
     channel = connection.channel()
-    message = 'Hello, RabbitMQ!'
-
     # Declare a queue for user registration data
     channel.queue_declare(queue=rabbitmq_queue, durable=True)
 
-    # Send the data as JSON to the RabbitMQ queue
     
 @app.route('/register', methods=['POST'])
 def register():
-    user_data = {
-        'firstName': request.form['firstName'],
-        'lastName': request.form['lastName'],
-        'dob': request.form['dob'],
-        'age': request.form['age'],
-        'lolId': request.form['lolId'],
-        'steamLink': request.form['steamLink'],
-        'securityQuestion1': request.form['securityQuestion1'],
-        'securityQuestion2': request.form['securityQuestion2'],
-        'username': request.form['username'],
-        'password': request.form['password']
-    }
+    if request.method == 'POST':
+        # Collect form data
+        first_name = request.form['firstName']
+        last_name = request.form['lastName']
+        dob = request.form['dob']
+        age = request.form['age']
+        lol_id = request.form['lolId']
+        steam_link = request.form['steamLink']
+        security_question1 = request.form['securityQuestion1']
+        security_question2 = request.form['securityQuestion2']
+        username = request.form['username']
+        password = request.form['password']
 
-    # Convert the data to a string
-    data_string = "\t".join(f"{key}={value}" for key, value in user_data.items())
+        # Prepare the data as a plaintext message
+        registration_data = f"First Name: {first_name}\nLast Name: {last_name}\nDate of Birth: {dob}\nAge: {age}\nLeague of Legends ID: {lol_id}\nSteam Link: {steam_link}\nSecurity Question #1: {security_question1}\nSecurity Question #2: {security_question2}\nUsername: {username}\nPassword: {password}"
 
-    # Publish the data to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data_string)
+        # Publish the data to RabbitMQ
+        channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=registration_data)
 
-    # Close the connection
-    connection.close()
-
-    return "Registration successful"
+        return 'Registration data sent to RabbitMQ'
 
 if __name__ == '__main__':
     app.run(debug=True)
