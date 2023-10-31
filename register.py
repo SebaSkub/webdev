@@ -48,6 +48,7 @@ def send_to_rabbitmq(data):
     }
 
     # Process the form data as needed
+        send_to_rabbitmq(user_data)
 
     return "Registration successful"  # You can handle success and response as needed
 
