@@ -92,7 +92,7 @@
 
 <body>
     <h2>User Registration</h2>
-    <form id="registrationForm">
+    <form id="registrationForm" action="/register" method="POST">
         <div>
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required>
@@ -142,6 +142,47 @@
     </form>
 
     <a href="/it490/login.html">Back to Login</a>
+
+    <script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            dob: document.getElementById('dob').value,
+            age: document.getElementById('age').value,
+            lolId: document.getElementById('lolId').value,
+            steamLink: document.getElementById('steamLink').value,
+            securityQuestion1: document.getElementById('securityQuestion1').value,
+            securityQuestion2: document.getElementById('securityQuestion2').value,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        };
+
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/it490/login.html'; // Replace with your login page URL
+                console.log('Registration successful');
+            } else {
+                console.error('Registration failed');
+            }
+        })
+        .catch(error => {
+            console.error('An error occurred:', error);
+        });
+
+        // Reset the form after submission
+        document.getElementById('registrationForm').reset();
+    });
+</script>
 
     <script>
         document.getElementById('generatePIN').addEventListener('click', function() {
