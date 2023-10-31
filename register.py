@@ -20,6 +20,7 @@ connection = pika.BlockingConnection(pika.ConnectionParameters(
     credentials=credentials
 ))
 channel = connection.channel()
+channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
 
 # Declare a queue
 channel.queue_declare(queue=RABBITMQ_QUEUE)
