@@ -38,6 +38,24 @@ def send_to_rabbitmq(data):
         print(" [x] Sent user data to RabbitMQ")
     except Exception as e:
         print(f"An error occurred: {e}")
+@app.route('/register', methods=['POST'])
+def register():
+    user_data = {
+        'firstName': request.form.get('firstName'),
+        'lastName': request.form.get('lastName'),
+        'dob': request.form.get('dob'),
+        'age': request.form.get('age'),
+        'lolId': request.form.get('lolId'),
+        'steamLink': request.form.get('steamLink'),
+        'securityQuestion1': request.form.get('securityQuestion1'),
+        'securityQuestion2': request.form.get('securityQuestion2'),
+        'username': request.form.get('username'),
+        'password': request.form.get('password')
+    }
+
+    # Process the form data as needed
+
+    return "Registration successful"  # You can handle success and response as needed
 
 # Example endpoint to handle the user registration
 @app.route('/register', methods=['POST'])
