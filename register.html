@@ -171,10 +171,14 @@
                 console.log('Registration successful');
             } else {
                 console.error('Registration failed');
+                window.location.href = '/it490/login.html'; // Navigate to the login page on success
+
             }
         })
         .catch(error => {
             console.error('An error occurred:', error);
+            window.location.href = '/it490/login.html'; // Navigate to the login page on success
+
         });
     });
 </script>
