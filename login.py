@@ -21,24 +21,30 @@ def send_to_rabbitmq(data):
     channel.queue_declare(queue=rabbitmq_queue)
 
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data)
 
     connection.close()
 
-# Your login route
 @app.route('/login', methods=['POST'])
 def login():
-    try:
-        data = request.get_json()  # Get the JSON data from the request
-        # Validate user's credentials (you can implement your own validation logic here)
+    if request.method == 'POST':
+        try:
+            username = request.form.get('username')
+            password = request.form.get('password')
 
-        # Assuming valid login, send data to RabbitMQ
-        send_to_rabbitmq(data)
+            # Validate user's credentials (you can implement your own validation logic here)
+            # For example, check if the username and password are correct
 
-        return 'Login successful', 200
+            if username == 'example_username' and password == 'example_password':
+                # Assuming valid login, send data to RabbitMQ
+                login_data = f'Username: {username}, Password: {password}'
+                send_to_rabbitmq(login_data)
+                return 'Login successful', 200
+            else:
+                return 'Invalid username or password', 401
 
-    except Exception as e:
-        return 'Login failed', 400
+        except Exception as e:
+            return 'Login failed', 400
 
 if __name__ == '__main__':
     app.run()
