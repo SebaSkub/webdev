@@ -21,9 +21,12 @@ def send_to_rabbitmq(data):
 
     # Declare a queue for login data
     channel.queue_declare(queue=rabbitmq_queue, durable = True)
+    serialized_data = "\t".join(str(value) for value in data.values())
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=serialized_data)
+
 
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
+    #channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
 
     connection.close()
 
