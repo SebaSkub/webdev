@@ -223,5 +223,45 @@
         document.getElementById('registrationForm').reset();
     });
     </script>
+       <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = `firstName=${encodeURIComponent(document.getElementById('firstName').value)}&` +
+                            `lastName=${encodeURIComponent(document.getElementById('lastName').value)}&` +
+                            `dob=${encodeURIComponent(document.getElementById('dob').value)}&` +
+                            `age=${encodeURIComponent(document.getElementById('age').value)}&` +
+                            `lolId=${encodeURIComponent(document.getElementById('lolId').value)}&` +
+                            `steamLink=${encodeURIComponent(document.getElementById('steamLink').value)}&` +
+                            `securityQuestion1=${encodeURIComponent(document.getElementById('securityQuestion1').value)}&` +
+                            `securityQuestion2=${encodeURIComponent(document.getElementById('securityQuestion2').value)}&` +
+                            `username=${encodeURIComponent(document.getElementById('username').value)}&` +
+                            `password=${encodeURIComponent(document.getElementById('password').value)}`;
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' // Use form-urlencoded
+                },
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/it490/login.html'; // Replace with your login page URL
+                    console.log('Registration successful');
+                } else {
+                    window.location.href = '/it490/login.html'; // Replace with your login page URL
+                    console.error('Registration failed');
+                }
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+                window.location.href = '/it490/login.html'; // Replace with your login page URL
+            });
+
+            // Reset the form after submission
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
 </body>
 </html>
