@@ -98,39 +98,23 @@
         <a href='/it490/register.html'>New User?&ensp;Register here!</a>
     </div>
     <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+      document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        const formData = new URLSearchParams();
-        formData.append('user', document.getElementById('user').value);
-        formData.append('pass', document.getElementById('pass').value);
+            const formData = new FormData(document.getElementById('loginForm'));
 
-        // Send the data to the login.py script as plaintext
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', // Set the content type to form-urlencoded
-            },
-            body: formData.toString(), // Convert the form data to a string
-        })
-        .then(response => {
-            if (response.ok) {
-                // Redirect only when the login is successful
-                window.location.href = '/it490/landing.html'; // Replace with your success page URL
-            } else {
-                // Handle login failures here
-                window.location.href = '/it490/landing.html'; // Replace with your success page URL
-
-                console.error('Login failed');
-
-            }
-        })
-        .catch(error => {
-            console.error('An error occurred:', error);
-
+            fetch('/login', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Redirect to the landing page in both success and failure cases
+                window.location.href = '/it490/landing.html';
+            })
+            .catch(error => {
+                console.error('An error occurred:', error);
+            });
         });
-
-    });
 </script>
 </body>
 
