@@ -10,8 +10,6 @@ rabbitmq_password = 'it490'
 rabbitmq_queue = 'userRegister_FTOB'
 
 app = Flask(__name)
-
-def send_to_rabbitmq(data):
     # Configure the RabbitMQ connection
     credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
