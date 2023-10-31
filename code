@@ -65,3 +65,23 @@
     <a href='/it490/login.html'>Return to login page</a>
 </body>
 </html>
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    user_data = {
+        'firstName': request.form.get('firstName'),
+        'lastName': request.form.get('lastName'),
+        'dob': request.form.get('dob'),
+        'age': request.form.get('age'),
+        'lolId': request.form.get('lolId'),
+        'steamLink': request.form.get('steamLink'),
+        'securityQuestion1': request.form.get('securityQuestion1'),
+        'securityQuestion2': request.form.get('securityQuestion2'),
+        'username': request.form.get('username'),
+        'password': request.form.get('password')
+    }
+
+    # Process the form data as needed
+
+    return "Registration successful"  # You can handle success and response as needed
