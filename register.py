@@ -22,29 +22,32 @@ def send_to_rabbitmq(data):
     channel.queue_declare(queue=rabbitmq_queue, durable=True)
 
     # Send the data as JSON to the RabbitMQ queue
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data), message)
-
-    connection.close()
-
+    
 @app.route('/register', methods=['POST'])
 def register():
     user_data = {
-        'firstName': request.form.get('firstName'),
-        'lastName': request.form.get('lastName'),
-        'dob': request.form.get('dob'),
-        'age': request.form.get('age'),
-        'lolId': request.form.get('lolId'),
-        'steamLink': request.form.get('steamLink'),
-        'securityQuestion1': request.form.get('securityQuestion1'),
-        'securityQuestion2': request.form.get('securityQuestion2'),
-        'username': request.form.get('username'),
-        'password': request.form.get('password')
+        'firstName': request.form['firstName'],
+        'lastName': request.form['lastName'],
+        'dob': request.form['dob'],
+        'age': request.form['age'],
+        'lolId': request.form['lolId'],
+        'steamLink': request.form['steamLink'],
+        'securityQuestion1': request.form['securityQuestion1'],
+        'securityQuestion2': request.form['securityQuestion2'],
+        'username': request.form['username'],
+        'password': request.form['password']
     }
 
-    # Send user registration data to RabbitMQ
-    send_to_rabbitmq(user_data)
+    # Convert the data to a string
+    data_string = "\t".join(f"{key}={value}" for key, value in user_data.items())
 
-    return "Registration successful"  # You can handle success and response as needed
+    # Publish the data to the RabbitMQ queue
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data_string)
+
+    # Close the connection
+    connection.close()
+
+    return "Registration successful"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
