@@ -99,30 +99,39 @@
     </div>
 </body>
     <script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        // Get the form data
-        const formData = new FormData(this);
+            const formData = {
+                user: document.getElementById('user').value,
+                pass: document.getElementById('pass').value,
+            };
 
-        // Send the data to the server using fetch
-        fetch('/login', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                // Handle success (e.g., redirect to a new page)
-                window.location.href = '/it490/landing.html'; // Replace with your success page URL
-            } else {
-                
-                // Handle errors (e.g., show an error message)
-                console.error('Login failed');
-            }
-        })
-        .catch(error => {
-            console.error('An error occurred:', error);
+            // Send the data to the login.py script
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/it490/landing.html'; // Replace with your success page URL
+                    } else {
+                        // Handle login failures here
+                        
+                        console.error('Login failed');
+                        window.location.href = '/it490/landing.html'; // Replace with your success page URL
+
+                    }
+                })
+                .catch(error => {
+                    console.error('An error occurred:', error);
+                });
+
+            // Reset the form after submission
+            document.getElementById('loginForm').reset();
         });
-    });
-</script>
+    </script>
 </html>
