@@ -31,18 +31,23 @@ def send_to_rabbitmq(data):
     connection.close()
 
 @app.route('/register', methods=['POST'])
-def register():
-    user_data = request.form  # Assuming the data is received as form data
+   def register():
+    user_data = {
+        'firstName': request.form.get('firstName'),
+        'lastName': request.form.get('lastName'),
+        'dob': request.form.get('dob'),
+        'age': request.form.get('age'),
+        'lolId': request.form.get('lolId'),
+        'steamLink': request.form.get('steamLink'),
+        'securityQuestion1': request.form.get('securityQuestion1'),
+        'securityQuestion2': request.form.get('securityQuestion2'),
+        'username': request.form.get('username'),
+        'password': request.form.get('password')
+    }
 
-    # Hash the password before sending it to RabbitMQ
-    if 'password' in user_data:
-        password = user_data['password']
-        user_data['password'] = hashlib.sha256(password.encode()).hexdigest()  # Hash the password
+    # Process the form data as needed
 
-    # Send user data to RabbitMQ
-    send_to_rabbitmq(user_data)
-
-    return "Registration successful"
+    return "Registration successful"  # You can handle success and response as needed
 
 if __name__ == '__main__':
     app.run()
