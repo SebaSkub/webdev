@@ -4,7 +4,7 @@ import json
 
 app = Flask(__name)
 
-rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
+rabbitmq_host = 'sars490'  # Update with your RabbitMQ server host
 rabbitmq_port = 5672
 rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
