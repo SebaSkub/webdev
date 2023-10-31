@@ -1,7 +1,6 @@
 import pika
+from flask import Flask, request, render_template
 import json
-import hashlib
-from flask import Flask, request
 
 # RabbitMQ connection parameters
 rabbitmq_host = 'sars490'  # Update with your RabbitMQ server host
@@ -20,37 +19,36 @@ def send_to_rabbitmq(data):
     channel = connection.channel()
 
     # Declare a queue for login data
-    channel.queue_declare(queue=rabbitmq_queue, durable = True)
-    plaintext_data = "\t".join(f"{key}={value}" for key, value in data.items())
+    channel.queue_declare(queue=rabbitmq_queue, durable=True)
 
     # Send the data as plaintext to the RabbitMQ queue
+    plaintext_data = "\t".join(f"{key}={value}" for key, value in data.items())
     channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=plaintext_data)
-
-
-    # Send the data as JSON to the RabbitMQ queue
-    #channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=json.dumps(data))
 
     connection.close()
 
-@app.route('/register', methods=['POST'])
-   def register():
-    user_data = {
-        'firstName': request.form.get('firstName'),
-        'lastName': request.form.get('lastName'),
-        'dob': request.form.get('dob'),
-        'age': request.form.get('age'),
-        'lolId': request.form.get('lolId'),
-        'steamLink': request.form.get('steamLink'),
-        'securityQuestion1': request.form.get('securityQuestion1'),
-        'securityQuestion2': request.form.get('securityQuestion2'),
-        'username': request.form.get('username'),
-        'password': request.form.get('password')
-    }
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        user_data = {
+            'firstName': request.form['firstName'],
+            'lastName': request.form['lastName'],
+            'dob': request.form['dob'],
+            'age': request.form['age'],
+            'lolId': request.form['lolId'],
+            'steamLink': request.form['steamLink'],
+            'securityQuestion1': request.form['securityQuestion1'],
+            'securityQuestion2': request.form['securityQuestion2'],
+            'username': request.form['username'],
+            'password': request.form['password']
+        }
 
-    # Process the form data as needed
+        # Process the form data as needed
         send_to_rabbitmq(user_data)
 
-    return "Registration successful"  # You can handle success and response as needed
+        return "Registration successful"  # You can handle success and response as needed
+    else:
+        return render_template('/it490/register.html')  # Render the HTML form
 
 if __name__ == '__main__':
     app.run()
