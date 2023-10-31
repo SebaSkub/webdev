@@ -29,9 +29,14 @@ def send_to_rabbitmq(data):
 
 @app.route('/register', methods=['POST'])
 def register():
-    user_data = request.json  # Assuming the data is received as JSON
+    user_data = request.form  # Assuming the data is received as form data
 
-    #Send user data to RabbitMQ
+    # Hash the password before sending it to RabbitMQ
+    if 'password' in user_data:
+        password = user_data['password']
+        user_data['password'] = hashlib.sha256(password.encode()).hexdigest()  # Hash the password
+
+    # Send user data to RabbitMQ
     send_to_rabbitmq(user_data)
 
     return "Registration successful"
