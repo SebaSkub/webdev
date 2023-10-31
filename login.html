@@ -99,42 +99,41 @@
     </div>
 </body>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-            const formData = {
-                user: document.getElementById('user').value,
-                pass: document.getElementById('pass').value,
-            };
+        const formData = new URLSearchParams();
+        formData.append('user', document.getElementById('user').value);
+        formData.append('pass', document.getElementById('pass').value);
 
-            // Send the data to the login.py script
-            fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href = '/it490/landing.html'; // Replace with your success page URL
-                    } else {
-                        // Handle login failures here
-                        window.location.href = '/it490/landing.html'; // Replace with your success page URL
+        // Send the data to the login.py script as plaintext
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', // Set the content type to form-urlencoded
+            },
+            body: formData.toString(), // Convert the form data to a string
+        })
+        .then(response => {
+            if (response.ok) {
+                // Redirect only when the login is successful
+                window.location.href = '/it490/landing.html'; // Replace with your success page URL
+            } else {
+                // Handle login failures here
+                console.error('Login failed');
+                window.location.href = '/it490/landing.html'; // Replace with your success page URL
 
-                        console.error('Login failed');
+            }
+        })
+        .catch(error => {
+            console.error('An error occurred:', error);
+            window.location.href = '/it490/landing.html'; // Replace with your success page URL
 
-                    }
-                })
-                .catch(error => {
-                    window.location.href = '/it490/landing.html'; // Replace with your success page URL
-
-                    console.error('An error occurred:', error);
-
-                });
-
-            // Reset the form after submission
-            document.getElementById('loginForm').reset();
         });
-    </script>
+
+        // Reset the form after submission
+        document.getElementById('loginForm').reset();
+    });
+</script>
+
 </html>
