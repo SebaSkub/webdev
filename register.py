@@ -1,7 +1,7 @@
 import pika
 import json
+import hashlib
 from flask import Flask, request
-
 
 # RabbitMQ connection parameters
 rabbitmq_host = 'sar490'  # Update with your RabbitMQ server host
