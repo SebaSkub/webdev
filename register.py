@@ -27,25 +27,6 @@ def send_to_rabbitmq(data):
 
     connection.close()
 
-
-def send_to_rabbitmq(data):
-    try:
-         Publish the user registration data to the RabbitMQ queue
-        channel.basic_publish(
-            exchange='',
-            routing_key=RABBITMQ_QUEUE,
-            body=json.dumps(data),
-            properties=pika.BasicProperties(
-                delivery_mode=2,  # Make the message persistent
-            )
-        
-        print(" [x] Sent user data to RabbitMQ")
-   except Exception as e:
-        print(f"An error occurred: {e}")
-
-
-
-
 @app.route('/register', methods=['POST'])
 def register():
     user_data = request.json  # Assuming the data is received as JSON
