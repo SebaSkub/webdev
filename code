@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="POST" action="/it490/register">
+        <table>
+            <tr>
+                <td><h3>User Information</h3></td>
+            </tr>
+            <tr>
+                <td class='top'>Email:</td>
+                <td class='top'><input type='email' name='email' required></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><input type='text' name='first' required></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><input type='text' name='last' required></td>
+            </tr>
+            <tr>
+                <td>Date of Birth (DOB):</td>
+                <td><input type='date' name='DOB' required></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><input type='number' name='age' required></td>
+            </tr>
+            <tr>
+                <td>League of Legends ID:</td>
+                <td><input type='text' name='lolID' required></td>
+            </tr>
+            <tr>
+                <td>Steam Link:</td>
+                <td><input type='url' name='steamLink'></td>
+            </tr>
+            <tr>
+                <td>Security Question #1 (Random Word):</td>
+                <td><input type='text' name='secQuest1' required></td>
+            </tr>
+            <tr>
+                <td>Security Question #2 (Random PIN):</td>
+                <td><input type='text' id='secQuest2' name='secQuest2' required></td>
+                <td><button type='button' onclick='generateRandomPin()'>Generate PIN</button></td>
+            </tr>
+            <tr>
+                <td><h3>Login Information</h3></td>
+            </tr>
+            <tr>
+                <td class='top'>Username:</td>
+                <td class='top'><input type='text' name='user' required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type='password' name='pass' required></td>
+            </tr>
+        </table>
+        <br>
+        <input type='submit' value='Register'><br><br>
+    </form>
+    <a href='/it490/login.html'>Return to login page</a>
+</body>
+</html>
