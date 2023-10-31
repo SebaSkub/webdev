@@ -92,54 +92,54 @@
 <body>
     <h2>User Registration</h2>
     <form id="registrationForm">
-        <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" required>
-        </div>
-        <div>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" required>
-        </div>
-        <div>
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
-        </div>
-        <div>
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
-        </div>
-        <div>
-            <label for="lolId">League of Legends ID:</label>
-            <input type="text" id="lolId" name="lolId" required>
-        </div>
-        <div>
-            <label for="steamLink">Steam Link:</label>
-            <input type="text" id="steamLink" name="steamLink" required>
-        </div>
-        <div>
-            <label for="securityQuestion1">Security Question #1: (Random Word)</label>
-            <input type="text" id="securityQuestion1" name="securityQuestion1" required>
-        </div>
-         <div>
-            <label for="securityQuestion2">Security Question #2: (Random PIN)</label>
-            <input type="text" id="securityQuestion2" name="securityQuestion2" readonly>
-            <button type="button" id="generatePIN">Generate PIN</button>
-        </div>
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+    </div>
+    <div>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+    </div>
+    <div>
+        <label for="lolId">League of Legends ID:</label>
+        <input type="text" id="lolId" name="lolId" required>
+    </div>
+    <div>
+        <label for="steamLink">Steam Link:</label>
+        <input type="text" id="steamLink" name="steamLink" required>
+    </div>
+    <div>
+        <label for="securityQuestion1">Security Question #1: (Random Word)</label>
+        <input type="text" id="securityQuestion1" name="securityQuestion1" required>
+    </div>
+    <div>
+        <label for="securityQuestion2">Security Question #2: (Random PIN)</label>
+        <input type="text" id="securityQuestion2" name="securityQuestion2" readonly>
+        <button type="button" id="generatePIN">Generate PIN</button>
+    </div>
 
+    <h3>Login Information</h3>
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
 
-        <h3>Login Information</h3>
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <button type="submit">Register</button>
-        </div>
-    </form>
         <a href="/it490/login.html">Back to Login</a>
 
     <script>
@@ -229,13 +229,11 @@
                     window.location.href = '/it490/login.html'; // Replace with your login page URL
                     console.log('Registration successful');
                 } else {
-                    window.location.href = '/it490/login.html'; // Replace with your login page URL
                     console.error('Registration failed');
                 }
             })
             .catch(error => {
                 console.error('An error occurred:', error);
-                window.location.href = '/it490/login.html'; // Replace with your login page URL
             });
 
             // Reset the form after submission
