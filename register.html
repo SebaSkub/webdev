@@ -5,24 +5,31 @@
     <title>User Registration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #2980b9, #6dd5fa);
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration-container {
+            max-width: 400px;
+            background: #333;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
         }
 
         h2 {
             text-align: center;
+            color: #fff;
         }
 
         form {
-            max-width: 400px;
-            margin: 0 auto;
             padding: 20px;
-            background: #333;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         table {
@@ -37,8 +44,8 @@
             padding-top: 15px;
         }
 
-        input[type="email"],
         input[type="text"],
+        input[type="email"],
         input[type="password"],
         input[type="date"],
         input[type="number"],
