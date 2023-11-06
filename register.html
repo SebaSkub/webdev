@@ -143,27 +143,6 @@
 
     <a href="/it490/login.html">Back to Login</a>
 
-  <script>
-fetch('/register', {
-    method: 'POST'
-})
-        })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = '/it490/login.html'; // Navigate to the login page on success
-                console.log('Registration successful');
-            } else {
-                console.error('Registration failed');
-
-            }
-        })
-        .catch(error => {
-            console.error('An error occurred:', error);
-
-        });
-    });
-</script>
-
     <script>
         document.getElementById('generatePIN').addEventListener('click', function() {
             const securityQuestion2Input = document.getElementById('securityQuestion2');
