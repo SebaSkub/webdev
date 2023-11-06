@@ -1,5 +1,5 @@
 import pika
-from flask import Flask, request
+from flask import Flask, request, redirect
 
 # RabbitMQ connection parameters
 rabbitmq_host = 'sars490'  # Update with your RabbitMQ server host
@@ -39,7 +39,8 @@ def register():
         # Publish the data to RabbitMQ
         channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=registration_data)
 
-        return 'Registration data sent to RabbitMQ'
+        # Redirect to the login page after successful registration
+        return redirect('/it490/login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
