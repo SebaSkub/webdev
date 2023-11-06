@@ -56,4 +56,4 @@ def hello_world():
     return 'Hello, World!'
 
 if __name__ == '__main__':
-    app.run(host=it490skubisz, port=7007)
+    app.run(host='10.198.120.126', port=7007)
