@@ -15,7 +15,7 @@ credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_pa
 parameters = pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials)
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
-channel.queue_declare(queue=rabbitmq_queue)
+channel.queue_declare(queue=rabbitmq_queue, durable = True)
 
 # Define a function to send data to RabbitMQ as plaintext
 def send_to_rabbitmq(data):
