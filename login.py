@@ -43,4 +43,4 @@ def login():
             return 'Login failed', 400
 
 if __name__ == '__main__':
-    app.run(host=it490skubisz, port=7007)
+    app.run(host='10.198.120.126', port=7007)
