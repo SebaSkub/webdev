@@ -12,7 +12,7 @@ rabbitmq_queue = 'userLogin_FTOB'  # Replace with the name of your login queue
 
 # Initialize a connection to RabbitMQ
 credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
-connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials)
+connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
 channel = connection.channel()
 channel.queue_declare(queue=rabbitmq_queue, durable = True)
 
