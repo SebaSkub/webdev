@@ -144,25 +144,8 @@
     <a href="/it490/login.html">Back to Login</a>
 
   <script>
-   const formData = [
-    document.getElementById('firstName').value,
-    document.getElementById('lastName').value,
-    document.getElementById('dob').value,
-    document.getElementById('age').value,
-    document.getElementById('lolId').value,
-    document.getElementById('steamLink').value,
-    document.getElementById('securityQuestion1').value,
-    document.getElementById('securityQuestion2').value,
-    document.getElementById('username').value,
-    document.getElementById('password').value,
-].map(value => encodeURIComponent(value)).join(',');
-
 fetch('/register', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'text/plain', // Set the content type to text/plain
-    },
-    body: formData
+    method: 'POST'
 })
         })
         .then(response => {
