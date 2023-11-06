@@ -18,6 +18,10 @@ channel = connection.channel()
 # Declare a queue for user registration data
 channel.queue_declare(queue=rabbitmq_queue, durable=True)
 
+# Define a function to send data to RabbitMQ as plaintext
+def send_to_rabbitmq(data):
+    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data)
+
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
@@ -36,8 +40,8 @@ def register():
         # Prepare the data as a comma-separated string
         registration_data = f"{first_name},{last_name},{dob},{age},{lol_id},{steam_link},{security_question1},{security_question2},{username},{password}"
 
-        # Publish the data to RabbitMQ
-        channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=registration_data)
+        # Use the send_to_rabbitmq function to publish the data to RabbitMQ
+        send_to_rabbitmq(registration_data)
 
         # Redirect to the login page after successful registration
         return redirect('/it490/login.html')
