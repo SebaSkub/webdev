@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import pika
 import json
 
-app = Flask(__name)
+app = Flask(__name__)
 # RabbitMQ configurations
 rabbitmq_host = 'sars490'  # Replace with your RabbitMQ server host
 rabbitmq_port = 5672
