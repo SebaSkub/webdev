@@ -8,7 +8,7 @@ rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
 rabbitmq_queue = 'userRegister_FTOB'
 
-app = Flask(__name)
+app = Flask(__name__)
 
 # Configure the RabbitMQ connection
 credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
