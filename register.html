@@ -147,15 +147,15 @@
     document.getElementById('registrationForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const formData = `firstName=${encodeURIComponent(document.getElementById('firstName').value)}&` +
-                        `lastName=${encodeURIComponent(document.getElementById('lastName').value)}&` +
-                        `dob=${encodeURIComponent(document.getElementById('dob').value)}&` +
-                        `age=${encodeURIComponent(document.getElementById('age').value)}&` +
-                        `lolId=${encodeURIComponent(document.getElementById('lolId').value)}&` +
-                        `steamLink=${encodeURIComponent(document.getElementById('steamLink').value)}&` +
-                        `securityQuestion1=${encodeURIComponent(document.getElementById('securityQuestion1').value)}&` +
-                        `securityQuestion2=${encodeURIComponent(document.getElementById('securityQuestion2').value)}&` +
-                        `username=${encodeURIComponent(document.getElementById('username').value)}&` +
+        const formData = `firstName=${encodeURIComponent(document.getElementById('firstName',).value)}&` +
+                        `lastName=${encodeURIComponent(document.getElementById('lastName',).value)}&` +
+                        `dob=${encodeURIComponent(document.getElementById('dob',).value)}&` +
+                        `age=${encodeURIComponent(document.getElementById('age',).value)}&` +
+                        `lolId=${encodeURIComponent(document.getElementById('lolId',).value)}&` +
+                        `steamLink=${encodeURIComponent(document.getElementById('steamLink',).value)}&` +
+                        `securityQuestion1=${encodeURIComponent(document.getElementById('securityQuestion1',).value)}&` +
+                        `securityQuestion2=${encodeURIComponent(document.getElementById('securityQuestion2',).value)}&` +
+                        `username=${encodeURIComponent(document.getElementById('username',).value)}&` +
                         `password=${encodeURIComponent(document.getElementById('password').value)}`;
 
         fetch('/register', {
