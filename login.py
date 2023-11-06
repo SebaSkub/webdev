@@ -25,8 +25,8 @@ def send_to_rabbitmq(data):
 def login():
     if request.method == 'POST':
         try:
-            username = request.form.get('username')
-            password = request.form.get('password')
+            username = request.form.get('user')
+            password = request.form.get('pass')
 
             # Validate user's credentials (you can implement your own validation logic here)
             # For example, check if the username and password are correct
