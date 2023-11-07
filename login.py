@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect
 import pika
 
 app = Flask(__name)
@@ -40,8 +40,8 @@ def login():
             # Assuming valid login, send data to RabbitMQ in the desired format
             login_data = f'{username},{password}'
             send_to_rabbitmq(login_data)
+            return redirect('/it490/landing.html')
 
-            return 'Login successful', 200
 
         except Exception as e:
             return 'Login failed', 400
