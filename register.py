@@ -10,18 +10,23 @@ rabbitmq_queue = 'userRegister_FTOB'
 
 app = Flask(__name__)
 
-# Configure the RabbitMQ connection
-credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
-connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
-channel = connection.channel()
-
-# Declare a queue for user registration data
-channel.queue_declare(queue=rabbitmq_queue, durable=True)
-
-# Define a function to send data to RabbitMQ as plaintext
 def send_to_rabbitmq(data):
-    channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data)
+    try:
+        # Initialize a connection to RabbitMQ
+        credentials = pika.PlainCredentials(username=rabbitmq_user, password=rabbitmq_password)
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=rabbitmq_host, port=rabbitmq_port, credentials=credentials))
+        channel = connection.channel()
+        channel.queue_declare(queue=rabbitmq_queue, durable=True)
 
+        # Send the data to RabbitMQ in the desired format
+        channel.basic_publish(exchange='', routing_key=rabbitmq_queue, body=data)
+
+        # Close the connection
+        connection.close()
+
+    except Exception as e:
+        # Handle exceptions if the connection or message sending fails
+        print(f"Failed to send data to RabbitMQ: {str(e)}")
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
