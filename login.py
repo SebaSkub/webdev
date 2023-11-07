@@ -23,20 +23,18 @@ def send_to_rabbitmq(data):
 # Your login route
 @app.route('/login', methods=['POST'])
 def login():
-    try:
-        if request.method == 'POST':
+    if request.method == 'POST':
+        try:
             username = request.form.get('username')
             password = request.form.get('password')
-                # Assuming valid login, send data to RabbitMQ in the desired format
-            login_data = f'{username},{password}'
+
+            # Assuming valid login, send data to RabbitMQ in the desired format
+            login_data = f'Username: {username}, Password: {password}'
             send_to_rabbitmq(login_data)
 
-                return 'Login successful', 200
-            else:
-                return 'Invalid username or password', 401
+            return 'Login successful', 200
 
-    except Exception as e:
-        return 'Login failed', 400
-
+        except Exception as e:
+            return 'Login failed', 400
 if __name__ == '__main__':
     app.run(host='10.198.120.126', port=7007)
