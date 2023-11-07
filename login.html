@@ -78,17 +78,17 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class "login-container">
         <h2>Login</h2>
-<form method="POST" action="/login" id="loginForm">
+        <form method="POST" action="/login" id="loginForm">
             <table>
                 <tr>
                     <td>Username:</td>
-                    <td><input type='text' name='user' required></td>
+                    <td><input type='text' name='username' required></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type='password' name='pass' required></td>
+                    <td><input type='password' name='password' required></td>
                 </tr>
             </table>
             <br>
@@ -97,7 +97,7 @@
         <br>
         <a href='/it490/register.html'>New User?&ensp;Register here!</a>
     </div>
-     <script>
+    <script>
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -113,18 +113,12 @@
                     window.location.href = '/it490/landing.html';
                 } else {
                     console.error('Login failed');
-                    window.location.href = '/it490/landing.html';
-
                 }
             })
             .catch(error => {
                 console.error('An error occurred:', error);
-                window.location.href = '/it490/landing.html';
-
             });
         });
     </script>
-    
 </body>
-
 </html>
