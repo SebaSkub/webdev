@@ -1,6 +1,8 @@
 import pika
 from flask import Flask, request, redirect
 
+app = Flask(__name__)
+
 # RabbitMQ connection parameters
 rabbitmq_host = 'sars490'  # Update with your RabbitMQ server host
 rabbitmq_port = 5672
@@ -8,7 +10,6 @@ rabbitmq_user = 'it490'
 rabbitmq_password = 'it490'
 rabbitmq_queue = 'userRegister_FTOB'
 
-app = Flask(__name__)
 
 def send_to_rabbitmq(data):
     try:
