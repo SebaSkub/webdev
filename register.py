@@ -53,4 +53,4 @@ def register():
         return redirect('/it490/login.html')
 
 if __name__ == '__main__':
-    app.run(host='10.198.120.126', port=7007)
+    app.run(host='0.0.0.0', port=7007)
