@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, redirect
 import pika
 
-app = Flask(__name)
+app = Flask(__name__)
 
 # RabbitMQ configurations
 rabbitmq_host = 'sars490'  # Replace with your RabbitMQ server host
