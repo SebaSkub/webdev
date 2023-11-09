@@ -17,7 +17,7 @@ function send_to_rabbitmq($data) {
         // Initialize a connection to RabbitMQ
         $connection = new AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
         $channel = $connection->channel();
-        $channel->queue_declare($rabbitmq_queue, durable = True);
+        $channel->queue_declare($rabbitmq_queue, false, true, false, false);
 
         // Send the data to RabbitMQ in the desired format
         $message = new AMQPMessage($data);
@@ -33,7 +33,7 @@ function send_to_rabbitmq($data) {
 }
 
 // Your login route
-if (['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $username = $_POST['username'];
         $password = $_POST['password'];
