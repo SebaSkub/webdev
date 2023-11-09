@@ -1,5 +1,8 @@
 <?php
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
+require_once 'vendor/autoload.php'; // Include the Composer autoloader
 
 $rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
@@ -12,13 +15,12 @@ function send_to_rabbitmq($data) {
 
     try {
         // Initialize a connection to RabbitMQ
-        $credentials = new PhpAmqpLib\Wire\AMQPTable(['login' => $rabbitmq_user, 'password' => $rabbitmq_password]);
-        $connection = new PhpAmqpLib\Connection\AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
+        $connection = new AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
         $channel = $connection->channel();
         $channel->queue_declare($rabbitmq_queue, false, true, false, false);
 
         // Send the data to RabbitMQ in the desired format
-        $message = new PhpAmqpLib\Message\AMQPMessage($data);
+        $message = new AMQPMessage($data);
         $channel->basic_publish($message, '', $rabbitmq_queue);
 
         // Close the connection
@@ -48,4 +50,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
