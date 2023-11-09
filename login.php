@@ -17,7 +17,7 @@ function send_to_rabbitmq($data) {
         // Initialize a connection to RabbitMQ
         $connection = new AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
         $channel = $connection->channel();
-        $channel->queue_declare($rabbitmq_queue, false, true, false, false);
+        $channel->queue_declare($rabbitmq_queue, durable = True);
 
         // Send the data to RabbitMQ in the desired format
         $message = new AMQPMessage($data);
