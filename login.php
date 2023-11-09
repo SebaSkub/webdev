@@ -33,7 +33,7 @@ function send_to_rabbitmq($data) {
 }
 
 // Your login route
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (['REQUEST_METHOD'] === 'POST') {
     try {
         $username = $_POST['username'];
         $password = $_POST['password'];
