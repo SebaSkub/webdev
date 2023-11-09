@@ -33,7 +33,7 @@ function send_to_rabbitmq($data) {
 }
 
 // Handle the form submission
-if ('REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Collect form data
         $first_name = $_POST['firstName'];
