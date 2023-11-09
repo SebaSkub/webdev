@@ -1,11 +1,11 @@
 <?php
 require_once 'vendor/autoload.php'; // Include the amqplib library
 
-$rabbitmq_host = 'sars490'; // Update with your RabbitMQ server host
+$rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
 $rabbitmq_user = 'it490';
 $rabbitmq_password = 'it490';
-$rabbitmq_queue = 'userLogin_FTOB'; // Replace with the name of your login queue
+$rabbitmq_queue = 'test'; // Replace with the name of your login queue
 
 function send_to_rabbitmq($data) {
     global $rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password, $rabbitmq_queue;
