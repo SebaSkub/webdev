@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     send_to_rabbitmq($registration_data);
 
     // Redirect to the login page after successful registration
-    header("Location: /it490/login.html");
+    header("Location: /var/www/html/it490/login.html");
     exit;
 }
 ?>
