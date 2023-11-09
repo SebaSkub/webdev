@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Assuming valid login, send data to RabbitMQ in the desired format
         $login_data = "$username,$password";
         send_to_rabbitmq($login_data);
-        header("Location: /it490/landing.html");
+        header("Location: /var/www/html/it490/landing.html");
         exit;
     } catch (Exception $e) {
         echo "Login failed";
