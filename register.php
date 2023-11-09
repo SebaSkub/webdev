@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php'; // Include the amqplib library
+use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 $rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
