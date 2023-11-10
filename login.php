@@ -9,7 +9,10 @@ $rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
 $rabbitmq_user = 'it490';
 $rabbitmq_password = 'it490';
-$rabbitmq_queue = 'test'; 
+$rabbitmq_queue = 'test';
+$username = $_POST['username'];
+$password = $_POST['password'];
+$message = "$username,$password";
         // Replace with the name of your login queue
         // Initialize a connection to RabbitMQ
         $connection = new AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
@@ -24,18 +27,12 @@ $rabbitmq_queue = 'test';
         $channel->close();
         $connection->close()
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        
 
         // Assuming valid login, send data to RabbitMQ in the desired format
-        $login_data = "$username,$password";
-        echo($login_data);
-        header("Location: /it490/landing.html");
+        echo($message);
+        header("Location: /landing.html");
         exit;
-    } catch (Exception $e) {
-        echo "Login failed";
-        http_response_code(400);
-        exit;
-    }
+    
 }
 ?>
