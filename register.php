@@ -2,7 +2,7 @@
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-require_once 'vendor/autoload.php'; // Include the Composer autoloader
+require_once __DIR__ . 'vendor/autoload.php'; // Include the Composer autoloader
 
 $rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
