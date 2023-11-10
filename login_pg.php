@@ -95,7 +95,7 @@
             <input type='submit' value="Login"><br><br>
         </form>
         <br>
-        <a href='/it490/register_pg.php'>New User?&ensp;Register here!</a>
+        <a href='/register_pg.php'>New User?&ensp;Register here!</a>
     </div>
 </body>
 </html>
