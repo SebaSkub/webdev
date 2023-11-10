@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $connection->close();
 
     // Redirect to the login page after successful registration
-    header("Location: /it490/login_pg.php");
+    header("Location: /login_pg.php");
     exit;
 }
 ?>
