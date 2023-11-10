@@ -5,11 +5,13 @@ use PhpAmqpLib\Message\AMQPMessage;
 require_once __DIR__ 'vendor/autoload.php';
 // Include the Composer autoloader
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+$loginForm = $_POST["login"]
 $rabbitmq_host = 'it490mjt'; // Update with your RabbitMQ server host
 $rabbitmq_port = 5672;
 $rabbitmq_user = 'it490';
 $rabbitmq_password = 'it490';
-$rabbitmq_queue = 'test'; // Replace with the name of your login queue
+$rabbitmq_queue = 'test'; 
+        // Replace with the name of your login queue
         // Initialize a connection to RabbitMQ
         $connection = new AMQPStreamConnection($rabbitmq_host, $rabbitmq_port, $rabbitmq_user, $rabbitmq_password);
         $channel = $connection->channel();
