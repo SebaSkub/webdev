@@ -142,7 +142,7 @@
         </div>
     </form>
 
-    <a href="/it490/login_pg.php">Back to Login</a>
+    <a href="/login_pg.php">Back to Login</a>
 
     <script>
         document.getElementById('generatePIN').addEventListener('click', function() {
