@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Assuming valid login, send data to RabbitMQ in the desired format
     echo $message;
-    header("Location: /it490/landing.html");
+    header("Location: /it490/landing.php");
     exit;
 }
 ?>
