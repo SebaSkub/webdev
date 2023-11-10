@@ -53,7 +53,7 @@
         <img src="download.jpeg" alt="League of Legends Image" /> <!-- Replace with your image -->
     </div>
 </body>
-            <a href='/it490/login.html'>Return to login page</a>
+            <a href='/login_pg.php'>Return to login page</a>
 </html>
 
 
